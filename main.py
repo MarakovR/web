@@ -317,12 +317,33 @@ class MyServer(BaseHTTPRequestHandler):
     <label for="exampleInputPassword1" class="form-label">Email</label>
     <input type="password" class="form-control" id="exampleInputPassword1">
   </div>
-  <button type="submit" class="btn btn-primary">Подтвердить</button>
+  <button type="submit" class="btn btn-primary form-control ">Подтвердить</button>
+  
+  </div>
 
-            
-        </main>
+<p class="fs-5 text-body-secondary">FAQ</p>
+ 
+  </div>
+  <p class="d-inline-flex gap-1" >
+  <a class="btn btn-primary form-control" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+    Как купить?
+  </a>
+  
+  <button class="btn btn-primary form-control" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+    Как доставить?
+  </button>
+  
+  <button class="btn btn-primary form-control" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+    Какая гарантия?
+  </button>
+  
+</p>
+<div class="collapse" id="collapseExample">
+  <div class="card card-body">
+    Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
 
-    
+
+
 
 </main>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
