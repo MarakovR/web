@@ -1,4 +1,5 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
+from urllib.parse import urlparse, parse_qs
 
 hostName = "localhost"
 serverPort = 8080
@@ -316,34 +317,43 @@ class MyServer(BaseHTTPRequestHandler):
   <div class="mb-3">
     <label for="exampleInputPassword1" class="form-label">Email</label>
     <input type="password" class="form-control" id="exampleInputPassword1">
+    </div>
+  <div class="mb-3 form-check">
+    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+    <label class="form-check-label" for="exampleCheck1">Check me out</label>
   </div>
   <button type="submit" class="btn btn-primary form-control ">Подтвердить</button>
   
   </div>
 
-<p class="fs-5 text-body-secondary">FAQ</p>
- 
-  </div>
-  <p class="d-inline-flex gap-1" >
-  <button class="btn btn-primary form-control" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-    Как купить?
-  </button>
-  
-  <button class="btn btn-primary form-control" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-    Как доставить?
-  </button>
-  
-  <button class="btn btn-primary form-control" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-    Какая гарантия?
-  </button>
-  
+<p class="d-inline-flex gap-1">
+  <a class="btn btn-primary form-control" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Как купить</a>
+  <button class="btn btn-primary form-control" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Как доставить</button>
+  <button class="btn btn-primary form-control" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapseExample3" aria-expanded="false" aria-controls="multiCollapseExample2">Какая гарантия</button>
 </p>
-<div class="collapse" id="collapseExample">
-  <div class="card card-body">
-    Как назначить каждой кнопке свой текст?
-
-
-
+<div class="row">
+  <div class="col">
+    <div class="collapse multi-collapse" id="multiCollapseExample1">
+      <div class="card card-body">
+        Для того чтобы купить интересующий Вас товар необходимо:.
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="collapse multi-collapse" id="multiCollapseExample2">
+      <div class="card card-body">
+        Доставка осуществляется с помощью:.
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="collapse multi-collapse" id="multiCollapseExample3">
+      <div class="card card-body">
+        Гарантия на товар предоставляется.
+      </div>
+    </div>
+  </div>
+</div>
 
 </main>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
@@ -366,9 +376,9 @@ class MyServer(BaseHTTPRequestHandler):
         """
 
     def do_GET(self):
-
+        query_components = parse_qs(urlparse(self.path).query)
+        print(query_components)
         page_content = self.__get_html_content()
-
         self.send_response(200)
         self.send_header("Content-type", "text/html")
         self.end_headers()
